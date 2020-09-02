@@ -1,0 +1,24 @@
+n = input();
+
+columeNames = ['a','b','c', 'd', 'e', 'f', 'g', 'h'];
+
+x = columeNames.index(n[:1]) + 1;
+y = int(n[1:]);
+
+cnt = 0;
+
+tempX = 0;
+tempY = 0;
+
+steps = [
+  (1, 2), (-1, 2), (1, -2), (-1, -2), (-2, 1), (-2, 1), (2, 1), (2, -1)
+  ]
+
+for step in steps:
+  tempX = x + step[0];
+  tempY = y + step[1];
+
+  if ((tempY > 0 and tempY < 9) and (tempX > 0 and tempX < 9)):
+    cnt += 1;
+
+print(cnt);
