@@ -1,0 +1,27 @@
+s = input()
+
+numberList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+strList = []
+numbers = []
+
+for v in s:
+  # 숫자
+  if v in numberList:
+    numbers.append(v)
+  # 문자
+  else:
+    strList.append(v)
+
+# 문자 오름차순 정렬
+# list to string
+strList.sort()
+resultStr = ''.join(strList)
+
+# 숫자 합
+resultSum = 0
+for i in numbers:
+  resultSum += int(i)
+
+result = resultStr + str(resultSum)
+print(result)
