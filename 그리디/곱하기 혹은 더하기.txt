@@ -1,0 +1,21 @@
+s = input()
+
+nums = []
+
+for i in range(len(s)):
+  nums.append(s[i])
+
+  # len가 2가되면 계산
+  if len(nums) == 2:
+    first = int(nums[0])
+    second = int(nums[1])
+    nums = [];
+
+    # 1 or 0 이면 더해주는게 값이 커짐
+    if first <= 1 or second <= 1:
+      nums.append(first + second)
+    else:
+      nums.append(first * second)      
+
+result = nums[0]
+print(result)
