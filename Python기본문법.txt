@@ -1,0 +1,290 @@
+# 지수 표현
+INF = int(1e9)
+print(INF)
+print()
+
+# 실수 표현
+a = 0.3 + 0.6
+print(a)
+print(round(a, 2)) # 소수점 2자리에서 반올림한다
+print()
+
+# 사칙연산
+# / 반환값은 실수 // 반환값은 정수
+a = 7 / 3
+print(a)
+a = 7 // 3
+print(a)
+a = 7 % 3
+print(a)
+a = 2 ** 3 # 거듭제곱
+print(a)
+print()
+
+# list
+a = [1, 2, 3, 4, 5]
+print(a)
+# indexing
+print(a[0], a[1])   #  0  1  2  3  4
+print(a[-1], a[-2]) # -5 -4 -3 -2 -1
+# slicing [이상 : 미만]
+print(a[1:5]) # 1 ~ 4
+# list 컴프리헨션 (조건문, 반복문을 이용한 초기화)
+a = [i for i in range(10)] # i로 for문 돌려서 초기화하겠다
+print(a)
+a = [i for i in range(20) if i % 2 == 1] # [(초기화 값), (for), (if)]
+print(a)
+# 컴프레헨션 vs 일반적인 코드
+a = []
+for i in range(20):
+  if i % 2 == 1:
+    a.append(i)
+print(a)
+# 컴프리헨션을 이용한 2차원 리스트 초기화
+# 4 x 3 리스트
+n = 4
+m = 3
+a = [0] * m
+print(a)
+a = [[0] * m for i in range(n)]
+print(a)
+# initialiaze
+a = [1, 4, 3];
+print(a);
+# append
+a.append(2);
+print(a)
+# sort VS sorted
+# ASC sort
+# 내장함수를 이용하기 때문에 기존 값이 변동됨
+a.sort()
+print(a)
+# DASC sort
+a.sort(reverse=True)
+print(a)
+# sorted
+# 외부함수를 이용하기 때문에 기존 값은 변동없이 정렬된 새로운 리스트를 반환
+temp = [5, 3, 1, 2, 4]
+result = sorted(temp);
+print(temp)
+print(result)
+# reverse
+a.reverse()
+print(a)
+# insert
+a.insert(2, 10) # index : 2 add : 3
+print(a)
+# count
+count = a.count(3)
+print(count)
+# remove data
+a.remove(10);
+print(a)
+# del index
+del a[0]
+print(a)
+# remove All
+a = [1, 2, 3, 4, 5, 5, 5]
+remove_set = {3, 5}
+result = [i for i in a if i not in remove_set] #if not in obj (obj안에 값이 없으면 True)
+print(result)
+print()
+
+# string
+s = 'Hello World'
+print(s)
+s = "Don't you know \"Python\"?"
+print(s)
+# add
+a = 'Hello'
+b = 'World'
+print(a + " " + b)
+# mul
+a = 'Stirng '
+print(a * 3)
+# slicing
+a = 'ABCDEF'
+print(a[2:4])
+
+# tuple
+# 한번 선언된 값을 변경할 수 없음 = 인뮤터블
+# 리스트 [] VS 튜플 ()
+a = (1, 2, 3, 4)
+print(a)
+# a[2] = 7 error
+
+# dict
+d = dict();
+d['사과'] = 'Apple'
+d['바나나'] = 'Banana'
+d['코코넛'] = 'Coconut'
+print(d)
+if '사과' in d:
+  print('사과를 키로 갖고 있는 데이터가 존재함 ')
+# keys() 키값들만 뽑기
+keys = d.keys();
+print(keys)
+print(list(keys))
+# values() 값들만 뽑기
+values = d.values();
+print(values)
+print(list(values))
+
+# 집합 자료형
+# 중복 x 순서 x
+# 초기화 1
+d = set([1, 1, 2, 3, 4, 4, 5])
+print(d)
+# 초기화 2
+d = {1, 1, 2, 3, 4, 4, 5}
+a = {1, 10, 3, 4, 5}
+b = {3, 4, 5, 6, 7}
+print(d)
+# 합집합
+# 중복삭제, 정렬까지 해줌
+print(a | b)
+# 교집합
+print(a & b)
+# 차집합
+print(a - b)
+# 새로운 원소 추가
+d.add(100)
+print(d)
+# 새로운 원소 여러개 추가
+d.update([1000, 10000])
+print(d)
+# 특정한 값 삭제
+d.remove(1000)
+print(d)
+
+# 입력
+# input : 1 2 3 4 5
+# input().split() => ['1', '2', '3', '4', '5']
+# map은 각 원소에 함수를 적용해주는 것
+# map(int, input().split()) => [1, 2, 3, 4, 5] 각 원소에 int()를 적용
+'''
+a = input().split()
+print(a)
+print(type(a))
+a, b, c, d, e = map(int, input().split());
+print(a, b, c, d, e);
+a = list(map(int, input().split()));
+print(a)
+# 빠른 입력 받기
+import sys
+s = sys.stdin.readline().rstrip()
+print(s)
+'''
+# 출력
+# \n 포함되어있음
+# print(value, end='\n')
+# 다음 행으로 넘어가길 원치 않으면 end속성을 바꿔주면 됨
+print(8)
+print(10)
+print(1, end= ' ')
+print(10)
+
+# 조건문
+if 1:
+  pass # 아무것도 처리하고 싶지 않을 때
+elif 2:
+  pass
+else:
+  pass
+
+# 논리 연산자
+# nd == &&
+# or == ||
+# not x
+
+# in / not in
+# 3 in list
+# 3 not in list
+
+# 간단한 if문
+# 삼항연산자 역할
+# Ture일 때의 반환값 if 조건 else False일 때의 반환값
+score = 80
+result = 'Success' if score >= 80 else 'Fail'
+print(result)
+
+# 반복문
+# range(start, end, step)
+for i in range(1, 11, 2):
+  print(i, end= ' ')
+print()
+
+# 함수
+# global
+# 바깥 스코프에 있는 전역번수를 지역변수처럼 사용하기 위한 global
+a = 5;
+def func():
+  global a 
+  a = 2
+func()
+print(a);
+# list global
+# list와 같은 것은 주소로 움직이기에 따로 global할 필요 없음
+a = [1, 2, 3]
+def func1():
+  a[0] = 10
+func1()
+print(a)
+# 여러개의 반환 값
+def operator(a, b):
+  return a+b, a-b, a*b, a/b
+a, b, c, d = operator(4, 2)
+print(a, b, c, d)
+
+# 람다
+# 매개변수 a, b
+# 반환값 a + b
+print((lambda a, b: a + b)(3, 5))
+# 자주 사용되는 형식
+# string은 sort할 기준이 없으므로 [1]의 int로 sort해라라는 의미의 람다
+arr = [('홍길동', 50), ('이순신', 32), ('아무개', 74)]
+print(sorted(arr, key=lambda a:a[1]))
+# list에 적용한 람다
+list1 = [1, 2, 3, 4, 5]
+list2 = [6, 7, 8, 9, 10]
+result = list(map(lambda a, b: a + b, list1, list2))
+print(result)
+
+# 순열
+# 서로 다른 n개에서 서로 다른 r개를 선택하여 일렬로 나열하는 것
+# {'A', 'B', 'C'}에서 두 개를 선택하여 나열하는 경우: 
+#     'ABC', 'ACB', 'BAC', 'BCA', 'CAB', 'CBA'
+from itertools import permutations
+data = ['A', 'B', 'C']
+result = list(permutations(data, 3))
+print(result)
+
+# 중복순열
+from itertools import product
+data = ['A', 'B', 'C']
+reuslt = list(product(data, repeat=2))
+print(result)
+
+# 조합
+# 서로 다른 n개에서 순서에 상관 없이 서로 다른 r개를 선택하는 것
+# {'A', 'B', 'C'}에서 순서를 고려하지 않고 두 개를 뽑는 경우:
+#      'AB', 'AC', 'BC'
+from itertools import combinations
+data = ['A', 'B', 'C']
+result = list(combinations(data, 2))
+print(result)
+
+# 중복조합
+from itertools import combinations_with_replacement
+data = ['A', 'B', 'C']
+result = list(combinations_with_replacement(data, 2))
+print(result)
+
+### 유용한 라이브러리 함수
+# sum()
+result = sum([1, 2, 3, 4, 5])
+print(result)
+# max, min
+# eval
+result = eval("3 * 2 * 1 + 1")
+print(result)
