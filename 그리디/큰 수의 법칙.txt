@@ -1,0 +1,19 @@
+n, m, k = map(int, input().split())
+
+data = list(map(int, input().split()))
+
+firstMaxNum = max(data)
+data.remove(firstMaxNum)
+secondMaxNum = max(data)
+
+result = 0
+cnt = 0
+for i in range(m):
+  if cnt < k:
+    result += firstMaxNum
+    cnt += 1
+  else:
+    result += secondMaxNum
+    cnt = 0
+
+print(result)
