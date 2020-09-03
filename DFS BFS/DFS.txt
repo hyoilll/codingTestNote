@@ -1,0 +1,25 @@
+Graph = [
+  [],
+  [2, 3, 8],
+  [1, 7],
+  [1, 4, 5],
+  [3, 5],
+  [3, 5],
+  [7],
+  [2, 6, 8],
+  [1, 7]
+]
+
+def dfs(Graph, v, visited):
+  # 방문처리
+  visited[v] = True
+  print(v, end = ' ')
+
+  for i in Graph[v]:
+    if not visited[i]:
+      dfs(Graph, i, visited)
+
+startVertex = 1
+visited = [False] * 9
+
+dfs(Graph, startVertex, visited)

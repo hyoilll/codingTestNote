@@ -1,0 +1,32 @@
+Graph = [
+  [],
+  [2, 3, 8],
+  [1, 7],
+  [1, 4, 5],
+  [3, 5],
+  [3, 5],
+  [7],
+  [2, 6, 8],
+  [1, 7]
+]
+
+from collections import deque
+def bfs(Graph, startVertex, visited):
+  # queue 생성
+  q = deque([startVertex])
+  visited[startVertex] = True
+
+  while q:
+    v = q.popleft()
+    print(v, end = ' ')
+    
+    for i in Graph[v]:
+      if not visited[i]:
+        q.append(i)
+        visited[i] = True
+  
+
+startVertex = 1
+visited = [False] * 9
+
+bfs(Graph, startVertex, visited)
