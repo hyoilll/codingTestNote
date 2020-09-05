@@ -1,0 +1,56 @@
+import sys
+n, k = map(int, input().split())
+
+from collections import deque
+q = deque()
+
+# 바이러스 정렬을 위한 list
+birusList = []
+
+Graph = []
+for i in range(n):
+  Graph.append(list(map(int, sys.stdin.readline().rstrip().split())))
+  for j in range(len(Graph[i])):
+    if Graph[i][j] != 0:
+      birusList.append([Graph[i][j], i, j])
+  
+m = len(Graph[0])
+s, resultX, resultY = map(int, sys.stdin.readline().rstrip().split())
+
+# 방향벡터
+# 동 서 남 북
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+def bfs(x, y):
+  for i in range(4):
+    nx = x + dx[i]
+    ny = y + dy[i]
+
+    # index out
+    if nx >= n or nx < 0 or ny >= m or ny < 0:
+      continue
+
+    if Graph[nx][ny] == 0:
+      Graph[nx][ny] = Graph[x][y]
+      q.append([nx, ny])
+
+birusList.sort()
+
+# 첫 바이러스 레벨 정렬 했으니 q로 바이러스 위치값 옮겨줌
+for i in birusList:
+  tempList = i
+  
+  q.append([tempList[1], tempList[2]])
+
+for _ in range(s):
+  qSize = len(q)
+
+  while qSize:
+    x, y = q.popleft()
+    
+    bfs(x, y)
+
+    qSize -= 1
+
+print(Graph[resultX - 1][resultY - 1])
