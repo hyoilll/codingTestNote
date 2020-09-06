@@ -1,0 +1,18 @@
+n, k = map(int, input().split())
+
+aList = list(map(int, input().split()))
+bList = list(map(int, input().split()))
+
+for _ in range(k):
+  aMin = min(aList)
+  aMinIdx = aList.index(aMin)
+  
+  bMax = max(bList)
+  bMaxIdx = bList.index(bMax)
+
+  if aList[aMinIdx] < bList[bMaxIdx]:
+    aList[aMinIdx], bList[bMaxIdx] = bList[bMaxIdx], aList[aMinIdx]
+  else:
+    break
+
+print(sum(aList))
