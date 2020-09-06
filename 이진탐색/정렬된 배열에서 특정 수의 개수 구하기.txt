@@ -1,0 +1,21 @@
+n, x = map(int, input().split())
+
+arr = list(map(int, input().split()))
+
+from bisect import bisect_left, bisect_right
+
+# 해당 값이 들어가야 하는 위치를 알려주는 함수
+def count_by_range(leftValue, rightvalue):
+  leftInsertIdx = bisect_left(arr, leftValue)
+  rightInsertIdx = bisect_right(arr, rightvalue)
+  return rightInsertIdx - leftInsertIdx
+
+# 값이 x인 데이터 개수 출력
+result = count_by_range(x, x) if count_by_range(x, x) > 0 else -1
+
+print(result)
+
+# 값이 [a, b] 범위의 데이터 개수 출력
+result = count_by_range(-1, 2)
+
+print(result)
