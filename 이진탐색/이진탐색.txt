@@ -1,0 +1,28 @@
+n, v = map(int, input().split())
+
+arr = list(map(int, input().split()))
+
+def binarySearch(value, start, end):
+  if start > end:
+    return -1
+
+  left = start
+  right = end
+  middle = (left + right) // 2
+
+  print(arr[start:end + 1])
+
+  # 중간 값이 value보다 크기 때문에 왼쪽 부분만 검사하면 됨
+  if arr[middle] > value:
+    return binarySearch(value, left, middle - 1)
+  elif arr[middle] < value:
+    return binarySearch(value, middle + 1, right)
+  elif arr[middle] == value:
+    return middle
+
+seachIdx = binarySearch(v, 0, n - 1)
+
+if seachIdx == -1:
+  print('값이 없습니다.')
+else:
+  print(seachIdx + 1, '번째에 존재함')
