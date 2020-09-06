@@ -1,0 +1,36 @@
+arr = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+
+print('sort 전 : ', arr)
+
+def quickSort(arr, start, end):
+  # 원소가 1개인 경우
+  if start >= end:
+    return
+
+  pivot = start
+  left = start + 1
+  right = end
+
+  while left <= right:
+    while left <= end and arr[left] <= arr[pivot]:
+      left += 1
+    while right > start and arr[right] >= arr[pivot]:
+      right -= 1
+
+    # 엇 갈린 것
+    if left > right:
+      arr[pivot], arr[right] = arr[right], arr[pivot]
+    # swap
+    else:
+      arr[left], arr[right] = arr[right], arr[left]
+    
+    print(arr)
+  
+  # left
+  quickSort(arr, start, right - 1)
+  # right
+  quickSort(arr, right + 1, end)
+
+quickSort(arr, 0, len(arr) - 1)
+
+print('sort 후 : ', arr)
