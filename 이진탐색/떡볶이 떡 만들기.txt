@@ -1,0 +1,33 @@
+n, m = map(int, input().split())
+
+arr = list(map(int, input().split()))
+
+def binarySearch(start, end):
+  if start > end:
+    return
+
+  left = start
+  right = end
+  mid = (left + right) // 2
+  print('mid : ', mid)
+
+  sumLen = 0
+  for item in arr:
+    print(item)
+    sumLen += (item - mid) if (item - mid) > 0 else 0
+  print('sumLen : ', sumLen)
+
+  # 내가 필요한 떡의 길이보다 잘려진 떡의 길이가 더 길 때 오른쪽 탐색
+  if sumLen > m:
+    print('sumLen > m')
+    return binarySearch(mid + 1, end)
+  elif sumLen < m:
+    print('sumLen < m')
+    return binarySearch(start, mid - 1)
+  else:
+    print('==')
+    return mid
+
+result = binarySearch(0, max(arr))
+
+print(result)
