@@ -1,0 +1,35 @@
+n, m = map(int, input().split())
+
+arr = []
+for _ in range(n):
+  arr.append(list(map(int, input().split())))
+
+rowSum = 0
+result = 'Yes'
+flag = False
+for i in range(n):
+  rowSum = sum(arr[i]) / 2
+  for j in range(m):
+    temp = rowSum - arr[i][j]
+    if temp >= 0:
+      arr[i][j] = 'A'
+      rowSum = temp
+
+      if rowSum == 0:
+        flag = True
+    else:
+      if flag == True:
+        arr[i][j] = 'B'
+      else:
+        result = 'No'
+        break
+  
+  if result == 'No':
+    break
+    
+if result == 'Yes':
+  print(result)
+  for i in range(n):
+    print(''.join(arr[i]))
+else:
+  print(result)
