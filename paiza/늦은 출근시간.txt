@@ -1,0 +1,52 @@
+a, b, c = map(int, input().split());
+
+n = int(input());
+
+trainTimeTable = [];
+
+for i in range(n):
+  hour, minitue = map(int, input().split());
+  trainTimeTable.append([hour, minitue])
+
+trainTimeTable.reverse();
+
+minitue = b + c;
+hour = 0;
+  
+if minitue > 59:
+  hour += 1;
+  minitue -= 60;
+
+result = [];
+for trainTime in trainTimeTable:
+  h = trainTime[0];
+  m = trainTime[1];
+
+  m += minitue;
+  h += hour;
+
+  if m > 59:
+    h += 1;
+    m -= 60;
+  
+  if h < 9:
+    trainTime[1] -= a;
+    if trainTime[1] < 0:
+      trainTime[0] -= 1;
+      trainTime[1] = 60 + trainTime[1];
+    result = [trainTime[0], trainTime[1]];
+    break;
+
+strH = '';
+strM = '';
+if trainTime[0] < 10:
+  strH = '0' + str(trainTime[0]);
+else:
+  strH = str(trainTime[0]);
+
+if trainTime[1] < 10:
+  strM = '0' + str(trainTime[1]);
+else:
+  strM = str(trainTime[1]);
+
+print(strH + ':' + strM);
