@@ -1,0 +1,29 @@
+n, x = map(int, input().split())
+
+taxis = []
+
+for i in range(n):
+  taxis.append(list(map(int, input().split())))
+
+prices = [0] * n
+
+for i in range(n):
+  # 기본요금 계산
+  dis = x - taxis[i][0]
+  prices[i] += taxis[i][1]
+
+  if dis < 0:
+    continue
+  # 가산요금 계산
+  else:
+    cnt = 0
+    while dis >= 0:
+      dis = dis - taxis[i][2]
+      cnt += 1
+    p = cnt * taxis[i][3]
+    prices[i] += p
+
+minPrice = min(prices)
+maxPrice = max(prices)
+
+print(minPrice, maxPrice)
