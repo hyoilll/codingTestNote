@@ -1,0 +1,35 @@
+n, k = map(int, input().split())
+
+arr = []
+for _ in range(n):
+  arr.append(list(map(int, input().split())))
+
+startPosition = []
+for i in range(n // k):
+  for j in range(n // k):
+    startPosition.append([i * k, j * k])
+
+result = []
+totalSum = 0
+for position in startPosition:
+  for i in range(position[0], position[0] + k):
+    for j in range(position[1], position[1] + k):
+      totalSum += arr[i][j]
+  
+  totalSum = totalSum // (k * k)
+  result.append(totalSum)
+  totalSum = 0
+
+temp = n // k
+endLine = 0
+
+for i in range(len(result)):
+  print(result[i],end='')
+  endLine += 1
+
+  if endLine != temp:
+    print(end=' ')
+  else:
+    print()
+    if i + 1 != len(result):
+      endLine = 0
