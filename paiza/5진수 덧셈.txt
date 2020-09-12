@@ -1,0 +1,35 @@
+s1, s2 = input().split()
+
+arr = ['A', 'B', 'C', 'D', 'E']
+
+result1 = 0
+mul = 1
+for i in reversed(range(len(s1))):
+  idx = arr.index(s1[i])
+  result1 += (idx * mul)
+  
+  mul = mul * 5
+
+mul = 1
+result2 = 0
+for i in reversed(range(len(s2))):
+  idx = arr.index(s2[i])
+  result2 += (idx * mul)
+  
+  mul = mul * 5
+
+result = result1 + result2
+
+resultList = []
+while True:
+  resultList.append(result % 5)
+
+  if result < 5:
+    break
+
+  result = result // 5
+
+resultList.reverse()
+
+for i in resultList:
+  print(arr[i],end='')
