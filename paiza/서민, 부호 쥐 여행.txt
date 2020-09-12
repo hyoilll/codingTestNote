@@ -1,0 +1,62 @@
+n, m = map(int, input().split())
+startX, startY = map(int, input().split())
+
+Graph = []
+for _ in range(n):
+  Graph.append(list(input()))
+
+# 방향벡터
+# 북 동 남 서
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+# 방향
+direction = [0, 90, 180, 270]
+
+def dfs(x, y, d, step):
+  if step == 2001:
+    return
+
+  # 부호집
+  if Graph[x][y] == '.':
+    Graph[x][y] = '*'
+    d += 90 # right
+    if d == 360:
+      d = 0
+
+    for i in range(len(direction)):
+      if d == direction[i]:
+        nx = x + dx[i]
+        ny = y + dy[i]
+        break;
+
+    # index out
+    if nx >= n or nx < 0 or ny >= m or ny < 0:
+      return
+    else:
+      dfs(nx, ny, d, step + 1)
+  # 서민집
+  else:
+    Graph[x][y] = '.'
+    d -= 90
+    if d == -90:
+      d = 270
+    
+    for i in range(len(direction)):
+      if d == direction[i]:
+        nx = x + dx[i]
+        ny = y + dy[i]
+        break;
+        
+    # index out
+    if nx >= n or nx < 0 or ny >= m or ny < 0:
+      return
+    else:
+      dfs(nx, ny, d, step + 1)
+      
+dfs(startX - 1, startY - 1, 0, 0)
+
+for i in range(n):
+  for j in range(m):
+    print(Graph[i][j],end='')
+  print()
