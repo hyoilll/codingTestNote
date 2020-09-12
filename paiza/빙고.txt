@@ -1,0 +1,56 @@
+n, m = map(int, input().split())
+
+arr = []
+for _ in range(n):
+  arr.append(list(map(int, input().split())))
+
+for _ in range(m - 1):
+  p = int(input())
+
+  for i in range(n):
+    for j in range(n):
+      if arr[i][j] == p:
+        arr[i][j] = 'x'
+
+def checkHit():
+  cnt = 0
+  for i in range(n):
+    if arr[i].count('x') == n:
+      cnt += 1
+  # 세로 확인
+  for i in range(n):
+    hit = 0
+    for j in range(n):
+      if arr[j][i] == 'x':
+        hit += 1
+    if hit == n:
+      cnt += 1
+  # 대각선 확인
+  hit = 0
+  for i in range(n):
+    if arr[i][i] == 'x':
+      hit += 1
+  if hit == n:
+    cnt += 1
+  # 역 대각선 확인
+  hit = 0
+  for i in range(n):
+    if arr[i][n - 1 - i] == 'x':
+      hit += 1
+  if hit == n:
+    cnt += 1
+  return cnt
+
+result = []
+# 가로 확인
+temp = 0
+for i in range(n):
+  for j in range(n):
+    if arr[i][j] != 'x':
+      temp = arr[i][j]
+      arr[i][j] = 'x'
+      hitCnt = checkHit()
+      result.append(hitCnt)
+      arr[i][j] = temp
+
+print(max(result))
