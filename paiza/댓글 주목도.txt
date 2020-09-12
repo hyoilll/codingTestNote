@@ -1,0 +1,30 @@
+n = int(input())
+
+parentList = [0] * 101
+childrenList = [0] * 101
+
+for _ in range(n):
+  nodeId, parentId, cost = input().split()
+  nodeId = int(nodeId)
+  cost = int(cost)
+
+  if parentId == 'None':
+    parentList[nodeId] = cost
+  else:
+    childrenList[nodeId] = [int(parentId), cost]
+
+for i in range(len(childrenList)):
+  if childrenList[i] != 0:
+    idx = childrenList[i][0]
+    cost = childrenList[i][1]
+
+    while True:
+      if childrenList[idx] != 0:
+        idx = childrenList[idx][0]
+      else:
+        break
+    
+    parentList[idx] = parentList[idx] + cost
+
+result = parentList.index(max(parentList))
+print(result)
