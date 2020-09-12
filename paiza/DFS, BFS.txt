@@ -1,0 +1,54 @@
+n, m = map(int, input().split())
+
+
+# def dfs(startVertex, endVertex, visited):
+#   visited[startVertex] = True
+#   if startVertex == endVertex:
+#     return 'yes'
+
+#   result = ''
+#   for i in Graph[startVertex]:
+#     if visited[i] == False:
+#       result = dfs(i, endVertex, visited)
+#       if result == 'yes':
+#         return result
+#   return result
+
+from collections import deque
+def bfs(startVertex, endVertex, visited):
+  q = deque()
+  q.append(startVertex)
+
+  while q:
+    v = q.popleft()
+    if v == endVertex:
+      return 'yes'
+    visited[v] = True
+    for i in Graph[v]:
+      if visited[i] == False:
+        q.append(i)
+
+Graph = [[] for _ in range(n + 1)]
+for _ in range(m):
+  query, a, b = map(int, input().split())
+  
+  # 친구 연결
+  if query == 0:
+    # 자기 자신과 연결 불가
+    if a == b:
+      continue
+
+    # 양방향 그래프
+    Graph[a].append(b)
+    Graph[b].append(a)
+  # 친구 확인
+  else: # query == 1
+    if a == b:
+      print('no')
+
+    visited = [False] * (n + 1)
+    result = bfs(a, b, visited)
+    if result == 'yes':
+      print('yes')
+    else:
+      print('no')
